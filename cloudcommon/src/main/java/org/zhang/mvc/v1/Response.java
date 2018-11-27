@@ -33,4 +33,13 @@ public class Response{
     public void setContent(Object content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "status=" + status +
+                ", msg='" + msg + '\'' +
+                ", content=" + content +
+                '}';
+    }
 }

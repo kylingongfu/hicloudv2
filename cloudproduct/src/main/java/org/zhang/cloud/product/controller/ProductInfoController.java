@@ -28,7 +28,7 @@ public class ProductInfoController {
 
     @RequestMapping("/list/{id}")
     public Response queryProductInfoById(@PathVariable String id){
-
+        System.out.println(id);
         return ResponseUtil.success(service.findById(id));
     }
 
