@@ -31,4 +31,11 @@ public class ProductInfoController {
 
         return ResponseUtil.success(service.findById(id));
     }
+
+    @RequestMapping("/listByStatus/{status}")
+    public Response listByStatus(@PathVariable int status){
+
+        return ResponseUtil.success(service.findByStatus(status));
+    }
+
 }

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.zhang.cloud.product.entity.ProductInfo;
 import org.zhang.cloud.product.repository.ProductInfoRepository;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     @Autowired
@@ -16,5 +18,9 @@ public class ProductService {
 
     public Iterable<ProductInfo> findAll() {
         return repository.findAll();
+    }
+
+    public List<ProductInfo> findByStatus(int status){
+        return repository.findByProductStatus(status);
     }
 }

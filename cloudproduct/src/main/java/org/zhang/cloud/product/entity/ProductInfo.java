@@ -13,7 +13,7 @@ public class ProductInfo {
     private long productStock;
     private String productDescription;
     private String productIcon;
-    private long productStatus;
+    private int productStatus;
     private long categoryType;
     private java.sql.Timestamp createTime;
     private java.sql.Timestamp updateTime;
@@ -77,7 +77,7 @@ public class ProductInfo {
         return productStatus;
     }
 
-    public void setProductStatus(long productStatus) {
+    public void setProductStatus(int productStatus) {
         this.productStatus = productStatus;
     }
 
