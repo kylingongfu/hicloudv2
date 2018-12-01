@@ -1,9 +1,16 @@
-package org.zhang.cloud.product.entity;
+package org.zhang.cloud.order.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class OrderDetail {
 
-  private String detailId;
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  private int detailId;
   private String orderId;
   private String productId;
   private String productName;
@@ -14,11 +21,11 @@ public class OrderDetail {
   private java.sql.Timestamp updateTime;
 
 
-  public String getDetailId() {
+  public int getDetailId() {
     return detailId;
   }
 
-  public void setDetailId(String detailId) {
+  public void setDetailId(int detailId) {
     this.detailId = detailId;
   }
 
