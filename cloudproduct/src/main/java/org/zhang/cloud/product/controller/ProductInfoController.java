@@ -2,7 +2,7 @@ package org.zhang.cloud.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.zhang.cloud.product.ProductService;
+import org.zhang.cloud.product.service.ProductService;
 import org.zhang.cloud.product.entity.ProductInfo;
 import org.zhang.mvc.v1.Response;
 import org.zhang.mvc.v1.ResponseUtil;
@@ -21,8 +21,7 @@ public class ProductInfoController {
 
     @PostMapping("/decreaseStock")
     public Response decreaseStock(List<ProductInfo> piList){
-        productService.decreaseStock(piList);
-        return null;
+        return ResponseUtil.success(productService.decreaseStock(piList));
     }
 
 

@@ -1,4 +1,4 @@
-package org.zhang.cloud.product;
+package org.zhang.cloud.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +8,7 @@ import org.zhang.cloud.product.exception.ProductException;
 import org.zhang.cloud.product.repository.ProductInfoRepository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,8 @@ public class ProductService {
     }
 
     @Transactional
-    public void decreaseStock(List<ProductInfo> piList) {
+    public ArrayList<ProductInfo> decreaseStock(List<ProductInfo> piList) {
+        ArrayList<ProductInfo> productInfos = new ArrayList<>();
         for (ProductInfo pi : piList) {
             Optional<ProductInfo> getPi = productInfoRepository.findById(pi.getProductId());
             if (!getPi.isPresent()) {
@@ -42,6 +44,8 @@ public class ProductService {
             }
             tmpPi.setProductStock(leftStock);
             productInfoRepository.save(tmpPi);
+            productInfos.add(tmpPi);
         }
+        return productInfos;
     }
 }
