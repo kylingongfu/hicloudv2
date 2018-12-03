@@ -13,6 +13,8 @@ import org.zhang.mvc.v1.Response;
 import org.zhang.mvc.v1.util.KeyUtil;
 import org.zhang.mvc.v1.util.ServiceUtil;
 
+import javax.transaction.Transactional;
+
 /**
  * @Auther: zhang
  * @Date: 2018/12/1 21:24
@@ -28,15 +30,17 @@ public class OrderService {
     @Autowired
     RestTemplate restTemplate;
 
-    public OrderForm create(OrderForm form){
+    @Transactional
+    public OrderMaster create(OrderForm form){
         OrderMaster om = new OrderMaster();
         om.setOrderId(KeyUtil.getUUID32());
         BeanUtils.copyProperties(form,om);
         restTemplate.postForObject(ServiceUtil.PRODUCT_API,om.getOrderDetailList(),Response.class);
 
-        for (OrderDetail od:form.getOrderDetailList()){
 
-        }
-        return null;
+        /*for (OrderDetail od:form.getOrderDetailList()){
+
+        }*/
+        return orderRepository.save(om);
     }
 }

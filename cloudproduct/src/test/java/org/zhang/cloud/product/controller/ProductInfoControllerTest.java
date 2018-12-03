@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.zhang.cloud.product.entity.ProductInfo;
+import org.zhang.cloud.product.exception.ProductException;
 import org.zhang.cloud.product.service.ProductService;
 import org.zhang.mvc.v1.ResponseUtil;
 
@@ -32,6 +33,51 @@ public class ProductInfoControllerTest {
 
         pi = new ProductInfo();
         pi.setProductId("164103465734242707");
+        pi.setProductStock(3);
+        productInfos.add(pi);
+
+        pi = new ProductInfo();
+        pi.setProductId("157875196366160022");
+        pi.setProductStock(1);
+        productInfos.add(pi);
+
+        ArrayList<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
+        System.out.println(ResponseUtil.success(productInfos1));
+    }
+
+    @Test(expected = ProductException.class)
+    public void decreaseStockOverNum() {
+        ArrayList<ProductInfo> productInfos = new ArrayList<>();
+        ProductInfo pi = new ProductInfo();
+        pi.setProductId("157875227953464068");
+        pi.setProductStock(2);
+        productInfos.add(pi);
+
+        pi = new ProductInfo();
+        pi.setProductId("164103465734242707");
+        pi.setProductStock(3);
+        productInfos.add(pi);
+
+        pi = new ProductInfo();
+        pi.setProductId("157875196366160022");
+        pi.setProductStock(10000);
+        productInfos.add(pi);
+
+        ArrayList<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
+        System.out.println(ResponseUtil.success(productInfos1));
+    }
+
+
+    @Test(expected = ProductException.class)
+    public void decreaseStockNoId() {
+        ArrayList<ProductInfo> productInfos = new ArrayList<>();
+        ProductInfo pi = new ProductInfo();
+        pi.setProductId("157875227953464068");
+        pi.setProductStock(2);
+        productInfos.add(pi);
+
+        pi = new ProductInfo();
+        pi.setProductId("xxxxxxxx");
         pi.setProductStock(3);
         productInfos.add(pi);
 
