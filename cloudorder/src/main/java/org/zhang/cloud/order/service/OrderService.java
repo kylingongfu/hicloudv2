@@ -35,12 +35,9 @@ public class OrderService {
         OrderMaster om = new OrderMaster();
         om.setOrderId(KeyUtil.getUUID32());
         BeanUtils.copyProperties(form,om);
-        restTemplate.postForObject(ServiceUtil.PRODUCT_API,om.getOrderDetailList(),Response.class);
-
-
-        /*for (OrderDetail od:form.getOrderDetailList()){
-
-        }*/
+        for (OrderDetail od:form.getOrderDetail()){
+            od = restTemplate.postForObject(ServiceUtil.PRODUCT_API+"/product/list/"+od.getProductId(),om.getOrderDetail(),Response.class).getContentType();
+        }
         return orderRepository.save(om);
     }
 }

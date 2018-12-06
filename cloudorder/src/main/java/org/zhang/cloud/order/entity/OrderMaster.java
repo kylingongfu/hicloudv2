@@ -1,11 +1,12 @@
 package org.zhang.cloud.order.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class OrderMaster {
 
+    @Id
     private String orderId;
     private String buyerName;
     private String buyerPhone;
@@ -16,14 +17,17 @@ public class OrderMaster {
     private long payStatus;
     private java.sql.Timestamp createTime;
     private java.sql.Timestamp updateTime;
-    private List<OrderDetail> orderDetailList;
 
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetail;
+
+
+    public List<OrderDetail> getOrderDetail() {
+        return orderDetail;
     }
 
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
+    public void setOrderDetail(List<OrderDetail> orderDetail) {
+        this.orderDetail = orderDetail;
     }
 
     public String getOrderId() {

@@ -30,6 +30,10 @@ public class Response{
         return content;
     }
 
+    public <T> T getContentType(){
+        return (T) getContent();
+    }
+
     public void setContent(Object content) {
         this.content = content;
     }

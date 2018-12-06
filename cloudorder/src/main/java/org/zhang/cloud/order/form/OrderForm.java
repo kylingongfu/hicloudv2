@@ -24,5 +24,5 @@ public class OrderForm {
     private long payStatus;
     private java.sql.Timestamp createTime;
     private java.sql.Timestamp updateTime;
-    private List<OrderDetail> orderDetailList;
+    private List<OrderDetail> orderDetail;
 }

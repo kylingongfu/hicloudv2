@@ -1,9 +1,6 @@
 package org.zhang.cloud.order.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class OrderDetail {
@@ -11,7 +8,18 @@ public class OrderDetail {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int detailId;
-  private String orderId;
+
+
+
+  //private String orderId;
+
+  @ManyToOne
+  @JoinColumn(name = "order_id"
+  )
+  /*@JoinColumn(name = "person_id",
+          foreignKey = @ForeignKey(name = "PERSON_ID_FK")
+  )*/
+  private OrderMaster orderMaster;
   private String productId;
   private String productName;
   private double productPrice;
@@ -30,15 +38,21 @@ public class OrderDetail {
   }
 
 
-  public String getOrderId() {
+  /*public String getOrderId() {
     return orderId;
   }
 
   public void setOrderId(String orderId) {
     this.orderId = orderId;
+  }*/
+
+  public OrderMaster getOrderMaster() {
+    return orderMaster;
   }
 
-
+  public void setOrderMaster(OrderMaster orderMaster) {
+    this.orderMaster = orderMaster;
+  }
   public String getProductId() {
     return productId;
   }
