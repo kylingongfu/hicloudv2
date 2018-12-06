@@ -1,5 +1,6 @@
 package org.zhang.cloud.order.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ import javax.transaction.Transactional;
  * @Date: 2018/12/1 21:24
  * @Description:
  */
-
+@Slf4j
 @Service
 public class OrderService {
 
@@ -31,12 +32,17 @@ public class OrderService {
     RestTemplate restTemplate;
 
     @Transactional
-    public OrderMaster create(OrderForm form){
+    public OrderMaster create(OrderForm form) {
         OrderMaster om = new OrderMaster();
         om.setOrderId(KeyUtil.getUUID32());
-        BeanUtils.copyProperties(form,om);
-        for (OrderDetail od:form.getOrderDetail()){
-            od = restTemplate.postForObject(ServiceUtil.PRODUCT_API+"/product/list/"+od.getProductId(),om.getOrderDetail(),Response.class).getContentType();
+        BeanUtils.copyProperties(form, om);
+        for (OrderDetail od : form.getOrderDetail()) {
+            Response response = restTemplate.postForObject(ServiceUtil.PRODUCT_API + "/product/list/" + od.getProductId(), om.getOrderDetail(), Response.class);
+            //Student user= gson.fromJson(jsonStr, User.class);
+            log.info("get from api "+response);
+            System.out.println(od);
+            od = response.getContentType();
+
         }
         return orderRepository.save(om);
     }
