@@ -1,12 +1,11 @@
-package org.zhang.cloud.product.entity;
+package org.zhang.cloud.order.form;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
-@Entity
-public class ProductInfo {
+public class ProductInfoForm {
 
-    @Id
     private String productId;
     private String productName;
     private double productPrice;
@@ -15,8 +14,8 @@ public class ProductInfo {
     private String productIcon;
     private int productStatus;
     private long categoryType;
-    private java.sql.Timestamp createTime;
-    private java.sql.Timestamp updateTime;
+    private String createTime;
+    private String updateTime;
 
 
     public String getProductId() {
@@ -91,21 +90,36 @@ public class ProductInfo {
     }
 
 
-    public java.sql.Timestamp getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
 
-    public java.sql.Timestamp getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(java.sql.Timestamp updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "ProductInfoForm{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productStock=" + productStock +
+                ", productDescription='" + productDescription + '\'' +
+                ", productIcon='" + productIcon + '\'' +
+                ", productStatus=" + productStatus +
+                ", categoryType=" + categoryType +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

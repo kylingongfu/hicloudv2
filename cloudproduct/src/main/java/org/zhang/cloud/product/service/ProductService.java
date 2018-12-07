@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     @Transactional
-    public ArrayList<ProductInfo> decreaseStock(List<ProductInfo> piList) {
+    public List<ProductInfo> decreaseStock(List<ProductInfo> piList) {
         ArrayList<ProductInfo> productInfos = new ArrayList<>();
         for (ProductInfo pi : piList) {
             Optional<ProductInfo> getPi = productInfoRepository.findById(pi.getProductId());
@@ -43,9 +43,9 @@ public class ProductService {
                 throw new ProductException(ResultEnum.PRODUCT_STORCK_ERROR);
             }
             tmpPi.setProductStock(leftStock);
-            productInfoRepository.save(tmpPi);
             productInfos.add(tmpPi);
         }
-        return productInfos;
+
+        return  productInfoRepository.saveAll(productInfos);
     }
 }

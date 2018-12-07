@@ -12,6 +12,7 @@ import org.zhang.mvc.v1.ResponseUtil;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.List;
 
 // 获取启动类，加载配置，确定装载 Spring 程序的装载方法，它回去寻找 主配置启动类（被 @SpringBootApplication 注解的）
 @SpringBootTest
@@ -46,7 +47,7 @@ public class ProductInfoControllerTest {
         pi.setProductStock(1);
         productInfos.add(pi);
 
-        ArrayList<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
+        List<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
         System.out.println(ResponseUtil.success(productInfos1));
     }
 
@@ -68,7 +69,7 @@ public class ProductInfoControllerTest {
         pi.setProductStock(10000);
         productInfos.add(pi);
 
-        ArrayList<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
+        List<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
         System.out.println(ResponseUtil.success(productInfos1));
     }
 
@@ -91,7 +92,7 @@ public class ProductInfoControllerTest {
         pi.setProductStock(100);
         productInfos.add(pi);
 
-        ArrayList<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
+        List<ProductInfo> productInfos1 = productService.decreaseStock(productInfos);
         System.out.println(ResponseUtil.success(productInfos1));
     }
 }

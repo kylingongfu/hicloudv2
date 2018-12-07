@@ -20,7 +20,7 @@ public class ProductInfoController {
     SimpleJpaRepository<ProductInfo,String> sir;*/
 
     @PostMapping("/decreaseStock")
-    public Response decreaseStock(List<ProductInfo> piList){
+    public Response decreaseStock(@RequestBody List<ProductInfo> piList){
         return ResponseUtil.success(productService.decreaseStock(piList));
     }
 

@@ -3,6 +3,7 @@ package org.zhang.cloud.order.form;
 import lombok.Data;
 import org.zhang.cloud.order.entity.OrderDetail;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class OrderForm {
     private double orderAmount;
     private long orderStatus;
     private long payStatus;
-    private java.sql.Timestamp createTime;
-    private java.sql.Timestamp updateTime;
+    private Date createTime;
+    private Date updateTime;
     private List<OrderDetail> orderDetail;
 }

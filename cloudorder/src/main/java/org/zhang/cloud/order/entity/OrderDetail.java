@@ -1,6 +1,7 @@
 package org.zhang.cloud.order.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class OrderDetail {
@@ -9,9 +10,21 @@ public class OrderDetail {
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int detailId;
 
-
-
-  //private String orderId;
+  @Override
+  public String toString() {
+    return "OrderDetail{" +
+            "detailId=" + detailId +
+            ", orderMaster=" + orderMaster +
+            ", productId='" + productId + '\'' +
+            ", productName='" + productName + '\'' +
+            ", productPrice=" + productPrice +
+            ", productQuantity=" + productQuantity +
+            ", productIcon='" + productIcon + '\'' +
+            ", createTime=" + createTime +
+            ", updateTime=" + updateTime +
+            '}';
+  }
+//private String orderId;
 
   @ManyToOne
   @JoinColumn(name = "order_id"
@@ -25,8 +38,12 @@ public class OrderDetail {
   private double productPrice;
   private long productQuantity;
   private String productIcon;
-  private java.sql.Timestamp createTime;
-  private java.sql.Timestamp updateTime;
+  private Date createTime;
+  private Date updateTime;
+
+
+  /*@Column(name = "order_id")
+  private String orderId;*/
 
 
   public int getDetailId() {
@@ -38,7 +55,7 @@ public class OrderDetail {
   }
 
 
-  /*public String getOrderId() {
+ /* public String getOrderId() {
     return orderId;
   }
 
@@ -98,7 +115,7 @@ public class OrderDetail {
   }
 
 
-  public java.sql.Timestamp getCreateTime() {
+  public Date getCreateTime() {
     return createTime;
   }
 
@@ -107,7 +124,7 @@ public class OrderDetail {
   }
 
 
-  public java.sql.Timestamp getUpdateTime() {
+  public Date getUpdateTime() {
     return updateTime;
   }
 

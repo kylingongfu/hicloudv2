@@ -1,6 +1,7 @@
 package org.zhang.cloud.order.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,10 +16,10 @@ public class OrderMaster {
     private double orderAmount;
     private long orderStatus;
     private long payStatus;
-    private java.sql.Timestamp createTime;
-    private java.sql.Timestamp updateTime;
+    private Date createTime;
+    private Date updateTime;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderMaster" ,cascade = CascadeType.ALL)
     private List<OrderDetail> orderDetail;
 
 
@@ -102,7 +103,7 @@ public class OrderMaster {
     }
 
 
-    public java.sql.Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
@@ -111,7 +112,7 @@ public class OrderMaster {
     }
 
 
-    public java.sql.Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
